@@ -94,6 +94,7 @@ public class unit_behaviour : MonoBehaviour
                 StartCoroutine(Wait(0.5f));
                 movementGrid.SetActive(false);
                 Command com = getDirections();
+                generateCoords(lengthOfMovement);
                 //Debug.Log((com.nbOfSteps, com.unitID, com.directionOfMovement, com.directionOfShot));
             }
             else
@@ -123,10 +124,15 @@ public class unit_behaviour : MonoBehaviour
                 turn(Command.Direction.West);
     }
 
-    void generateCoords(int length)
+    void generateCoords(int length) {
+        Tile tile = glitterTile;
+        generateCoords(20, null);
+        generateCoords(length, tile);
+    }
+
+    void generateCoords(int length, Tile tile)
     {
         movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;
-        Tile tile = glitterTile;
         if (diagonal)
         {
             for (int i = -length+ 1; i < length; i++)
@@ -166,9 +172,9 @@ public class unit_behaviour : MonoBehaviour
         }
         else {
             if (moveloc.x == 0) {
-                steps = moveloc.y;
+                steps = Mathf.Abs(moveloc.y);
             } else {
-                steps = moveloc.x;
+                steps = Mathf.Abs(moveloc.x);
             }
             movedir = getCardinalDirection(moveloc);
             shootdir = getCardinalDirection(shootloc);
