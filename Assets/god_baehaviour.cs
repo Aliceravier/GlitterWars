@@ -29,7 +29,7 @@ public class god_baehaviour : MonoBehaviour
             List<Command> listOfCommands = new List<Command>();
             foreach(GameObject unit in units)
             {
-                listOfCommands.Add(unit.GetComponent<unit_behaviour>().command);
+                listOfCommands.Add(unit.GetComponent<unit_behaviour>().getDirections());
             }
             //store lists of commands in a queue, one list entry per day/turn
             commandsQueue.Enqueue(listOfCommands);

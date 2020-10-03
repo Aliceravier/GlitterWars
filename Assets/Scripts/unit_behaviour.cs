@@ -72,7 +72,7 @@ public class unit_behaviour : NetworkBehaviour
                 StartCoroutine(Wait(1));
                 movementGrid.SetActive(false);
                 Command com = getDirections();
-                Debug.Log((com.nbOfSteps, com.unitID, com.directionOfMovement, com.directionOfShot));
+                //Debug.Log((com.nbOfSteps, com.unitID, com.directionOfMovement, com.directionOfShot));
             }
             else
                 movementGrid.SetActive(false);
