@@ -16,11 +16,13 @@ public class unit_behaviour : NetworkBehaviour
     public int lengthOfMovement;
     public List<int> directionsOfMovement; //ints 0 -> 7 indicating all cardinal directions
     public List<int> directionsOfShot;
+    GameObject movementGrid;
+    
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;   
     }
 
     // Update is called once per frame
@@ -28,11 +30,15 @@ public class unit_behaviour : NetworkBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            transform.Find("Grid").transform.Find("MovementGrid").gameObject.active = true;
+            //transform.Find("Grid").transform.Find("MovementGrid").gameObject.active = true;
             //show clickable grid UI of diameter lengthOfMovement which expands in directionsOfMovement
             //get next click on grid and register movement command, change status to Moved
 
             Debug.Log("Pressed primary button.");
         }
+    }
+
+    public void ToggleGrid(bool isActive){
+        movementGrid.SetActive(isActive);
     }
 }
