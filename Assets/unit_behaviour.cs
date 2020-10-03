@@ -27,9 +27,12 @@ public class unit_behaviour : NetworkBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
+        {
+            transform.Find("Grid").transform.Find("MovementGrid").gameObject.active = true;
             //show clickable grid UI of diameter lengthOfMovement which expands in directionsOfMovement
             //get next click on grid and register movement command, change status to Moved
 
             Debug.Log("Pressed primary button.");
+        }
     }
 }
