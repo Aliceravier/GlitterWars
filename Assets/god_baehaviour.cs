@@ -30,15 +30,12 @@ public class god_baehaviour : MonoBehaviour
         commandsQueue.Enqueue(new List<Command>());
         commandsQueue.Enqueue(new List<Command>());
         //initialise unit positions
-        unitPositions = new Vector3[units.Length];
-        int i = 0;
-        foreach(GameObject unit in units)
-        {
-           unitPositions[i] = unit.GetComponent<Transform>().position;
-           unitPositions[i].z = unit.GetComponent<unit_behaviour>().id;
-           i++;
-        }
         
+    }
+
+    void die(GameObject unit) {
+        Destroy(unit);
+        units = GameObject.FindGameObjectsWithTag("Unit");
     }
 
     // Update is called once per frame
@@ -91,6 +88,8 @@ public class god_baehaviour : MonoBehaviour
                 Debug.Log("unit to command is " + unitToCommand);
             }
         }
+        // Unit died, sorry
+        if (unitToCommand == null) return;
         //get actual number of steps possible
         getCollisionLocationAndUpdateSteps(command.directionOfMovement, unitToCommand, command);
         //movement
@@ -144,7 +143,8 @@ public class god_baehaviour : MonoBehaviour
         Debug.Log(unitPosition != targetPosition);
         //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), 10);
         int i = 0;
-        while (i < 100)
+        while (Mathf.Abs(unitToCommand.GetComponent<Transform>().position.x - targetPosition.x) > 0.01 ||
+            Mathf.Abs(unitToCommand.GetComponent<Transform>().position.y - targetPosition.y) > 0.01)
         {
             Debug.Log("moving");
             //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), step);
