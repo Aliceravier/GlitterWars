@@ -27,7 +27,7 @@ public class unit_behaviour : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void onMouseOver()
+    void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -51,6 +51,7 @@ public class unit_behaviour : NetworkBehaviour
     }
 
     public void ToggleGrid(bool isActive){
+        Debug.Log("cooooll");
         movementGrid.SetActive(isActive);
     }
 }
