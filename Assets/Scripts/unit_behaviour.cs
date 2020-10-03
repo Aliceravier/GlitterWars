@@ -41,6 +41,7 @@ public class unit_behaviour : MonoBehaviour
     }
 
     public void resetShootAndMove() {
+        status = Status.Available;
         moveloc = new Vector3Int(0, 0, 0);
         shootloc = new Vector3Int(0, 0, 0);
     }
