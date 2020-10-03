@@ -1,0 +1,206 @@
+fileFormatVersion: 2
+guid: 8d5d4d118fd493f469850002bb98c9ae
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 488321055067236752
+    second: SNES - The Chessmaster - Chess Pieces_0
+  - first:
+      213: -8610713497160243014
+    second: SNES - The Chessmaster - Chess Pieces_1
+  - first:
+      213: 3071374152481090791
+    second: SNES - The Chessmaster - Chess Pieces_2
+  - first:
+      213: -7654897968814490244
+    second: SNES - The Chessmaster - Chess Pieces_3
+  - first:
+      213: 4202273204976248706
+    second: SNES - The Chessmaster - Chess Pieces_4
+  - first:
+      213: -6820872313679285302
+    second: SNES - The Chessmaster - Chess Pieces_5
+  - first:
+      213: -4173742629549196542
+    second: SNES - The Chessmaster - Chess Pieces_6
+  - first:
+      213: 3849983437504842924
+    second: SNES - The Chessmaster - Chess Pieces_7
+  - first:
+      213: -2265252911347537620
+    second: SNES - The Chessmaster - Chess Pieces_8
+  - first:
+      213: -8564036745542773727
+    second: SNES - The Chessmaster - Chess Pieces_9
+  - first:
+      213: 3192105834696239697
+    second: SNES - The Chessmaster - Chess Pieces_10
+  - first:
+      213: 28214387205521162
+    second: SNES - The Chessmaster - Chess Pieces_11
+  - first:
+      213: -911237236311314032
+    second: SNES - The Chessmaster - Chess Pieces_12
+  - first:
+      213: -6281444882212279232
+    second: SNES - The Chessmaster - Chess Pieces_13
+  - first:
+      213: -4699573206903906190
+    second: SNES - The Chessmaster - Chess Pieces_14
+  - first:
+      213: -8106900888317951371
+    second: SNES - The Chessmaster - Chess Pieces_15
+  - first:
+      213: 3911905828664351611
+    second: SNES - The Chessmaster - Chess Pieces_16
+  - first:
+      213: 434831564786042935
+    second: SNES - The Chessmaster - Chess Pieces_17
+  - first:
+      213: 5961718958497014325
+    second: SNES - The Chessmaster - Chess Pieces_18
+  - first:
+      213: -7476083669372691219
+    second: SNES - The Chessmaster - Chess Pieces_19
+  - first:
+      213: -4436079761393269736
+    second: SNES - The Chessmaster - Chess Pieces_20
+  - first:
+      213: -8738545700356193366
+    second: SNES - The Chessmaster - Chess Pieces_21
+  - first:
+      213: 8328311482032986581
+    second: SNES - The Chessmaster - Chess Pieces_22
+  - first:
+      213: -966210230311153105
+    second: SNES - The Chessmaster - Chess Pieces_23
+  - first:
+      213: -2395104110421224644
+    second: SNES - The Chessmaster - Chess Pieces_24
+  - first:
+      213: -7605442212129563747
+    second: SNES - The Chessmaster - Chess Pieces_25
+  - first:
+      213: -1499722845547508464
+    second: SNES - The Chessmaster - Chess Pieces_26
+  - first:
+      213: 4927195312612062887
+    second: SNES - The Chessmaster - Chess Pieces_27
+  - first:
+      213: 7265354533484255150
+    second: SNES - The Chessmaster - Chess Pieces_28
+  - first:
+      213: -6038828318954589043
+    second: SNES - The Chessmaster - Chess Pieces_29
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
