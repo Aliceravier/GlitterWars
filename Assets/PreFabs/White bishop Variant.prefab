@@ -31,8 +31,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   lengthOfMovement: 0
+  glitterTile: {fileID: 0}
   directionsOfMovement: 00000000000000000000000000000000
-  directionsOfShot: 
+  diagonal: 0
 --- !u!1001 &387789807809811039
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40,10 +41,27 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 926961315, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 926961315, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869593807, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
+      propertyPath: glitterTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 11f961d2b0cacfb41b0807daae921f63,
+        type: 2}
+    - target: {fileID: 1869593808, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
+      propertyPath: m_AssetId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 82111645284982628, guid: cd886d6fa701a37478b36159360cbfcb,
         type: 3}
       propertyPath: m_Name
-      value: White bishop
+      value: White bishop Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1553493359241046352, guid: cd886d6fa701a37478b36159360cbfcb,
         type: 3}
