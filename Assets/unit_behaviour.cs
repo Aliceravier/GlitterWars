@@ -18,6 +18,8 @@ public class unit_behaviour : NetworkBehaviour
     public int lengthOfMovement;
     public List<int> directionsOfMovement; //ints 0 -> 7 indicating all cardinal directions
     public bool diagonal;
+    public int id;
+    public Command command;
     GameObject movementGrid;
     Vector3Int offset = new Vector3Int(1, 3, 0);
 

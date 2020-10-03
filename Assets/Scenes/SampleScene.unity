@@ -2480,6 +2480,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1869593807, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
+      propertyPath: diagonal
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1869593808, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
       propertyPath: sceneId
       value: 1833375956
