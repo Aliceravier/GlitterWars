@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundCreator : MonoBehaviour
 {
-    public Vector2Int startPoint;
+    public Vector3Int startPoint;
     public int numberOfTiles;
     public GameObject[] backgroundTiles;
     Grid grid; 
@@ -14,10 +14,12 @@ public class BackgroundCreator : MonoBehaviour
     {
         grid = GameObject.Find("Grid").GetComponent<Grid>();
         mainCamera = Camera.main;
+        Vector3 currentPoint;
 
         for (int i = 0; i < numberOfTiles; i++){
             GameObject tile = SelectTile();
             
+
         }
         
     }
