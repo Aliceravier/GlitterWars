@@ -91,11 +91,25 @@ public class god_baehaviour : MonoBehaviour
                 Debug.Log("unit to command is " + unitToCommand);
             }
         }
-
+        //get actual number of steps possible
+        updateNbOfPossibleSteps(command, unitToCommand);
+        
         //movement
         StartCoroutine(moveUnit(unitToCommand, command));
-            
+                
     }
+
+    void updateNbOfPossibleSteps(Command command, GameObject unitToCommand)
+    {
+        Vector3Int cellPosition = getCellPosition(unitToCommand);  
+        Debug.Log(cellPosition);
+    }
+
+    Vector3Int getCellPosition(GameObject unitToCommand)
+    {
+        return GameObject.Find("Map").GetComponent<Grid>().WorldToCell(unitToCommand.GetComponent<Transform>().position + new Vector3(2,1,0));
+    }
+
 
     IEnumerator moveUnit(GameObject unitToCommand, Command command)
     {
