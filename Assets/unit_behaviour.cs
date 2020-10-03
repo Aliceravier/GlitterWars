@@ -16,6 +16,7 @@ public class unit_behaviour : NetworkBehaviour
     private Status status = Status.Available;
 
     public int lengthOfMovement;
+    public Tile glitterTile;
     public List<int> directionsOfMovement; //ints 0 -> 7 indicating all cardinal directions
     public bool diagonal;
     GameObject movementGrid;
@@ -44,7 +45,7 @@ public class unit_behaviour : NetworkBehaviour
             {
                 if (allowedSquares.Contains(coordinate))
                 {
-                    Tile tile = AssetDatabase.LoadAssetAtPath<Tile>("Assets/Tiles/Glitter_Floor-1.asset");
+                    Tile tile = glitterTile;
                     movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, tile);
                     Debug.Log("Here we go!!!!");
                     status = Status.Moved;
@@ -68,7 +69,7 @@ public class unit_behaviour : NetworkBehaviour
     void generateCoords(int length)
     {
         movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;
-        Tile tile = AssetDatabase.LoadAssetAtPath<Tile>("Assets/Tiles/Glitter_Floor-1.asset");
+        Tile tile = glitterTile;
         if (diagonal)
         {
             for (int i = -length+ 1; i < length; i++)

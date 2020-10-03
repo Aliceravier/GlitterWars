@@ -7,6 +7,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 926961315, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869593807, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
+      propertyPath: glitterTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 11f961d2b0cacfb41b0807daae921f63,
+        type: 2}
     - target: {fileID: 1869593808, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
       propertyPath: sceneId
       value: 0
@@ -18,7 +27,7 @@ PrefabInstance:
     - target: {fileID: 82111645284982628, guid: cd886d6fa701a37478b36159360cbfcb,
         type: 3}
       propertyPath: m_Name
-      value: Black tower
+      value: Black tower Variant
       objectReference: {fileID: 0}
     - target: {fileID: 1553493359241046352, guid: cd886d6fa701a37478b36159360cbfcb,
         type: 3}
