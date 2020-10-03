@@ -1,31 +1,22 @@
 fileFormatVersion: 2
-guid: a3c71abdaff7d6f47929290c4a72ee46
+guid: 2fea761b0f0257a4e8e036fc718c51e9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 325510999958906572
-    second: Rook_Robot_0
+      213: 7432028175374338571
+    second: Other_Robot_red_0
   - first:
-      213: 2916191673623777531
-    second: Rook_Robot_1
+      213: 1762512400067490999
+    second: Other_Robot_red_1
   - first:
-      213: 3687827504743351247
-    second: Rook_Robot_2
+      213: 1920004856164050092
+    second: Other_Robot_red_2
   - first:
-      213: 5081567367866526805
-    second: Rook_Robot_0
+      213: -5655677046966989847
+    second: Other_Robot_red_3
   - first:
-      213: 549631930234263379
-    second: Rook_Robot_1
-  - first:
-      213: -1501218214821267367
-    second: Rook_Robot_2
-  - first:
-      213: -2377607956072448549
-    second: Rook_Robot_3
-  - first:
-      213: 960220713022789784
-    second: Rook_Robot_4
+      213: 6135325009749341778
+    second: Other_Robot_red_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -69,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 50
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,11 +98,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rook_Robot_0
+      name: Other_Robot_red_0
       rect:
         serializedVersion: 2
         x: 0
@@ -125,14 +128,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55ca6e7099a558640800000000000000
-      internalID: 5081567367866526805
+      spriteID: b0ac1e9bf3ed32760800000000000000
+      internalID: 7432028175374338571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rook_Robot_1
+      name: Other_Robot_red_1
       rect:
         serializedVersion: 2
         x: 64
@@ -146,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35753d6145fa0a700800000000000000
-      internalID: 549631930234263379
+      spriteID: 7b47e3e80b3b57810800000000000000
+      internalID: 1762512400067490999
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rook_Robot_2
+      name: Other_Robot_red_2
       rect:
         serializedVersion: 2
         x: 0
@@ -167,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9587b37ccf99a2be0800000000000000
-      internalID: -1501218214821267367
+      spriteID: ca4eeaa7e3a35aa10800000000000000
+      internalID: 1920004856164050092
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rook_Robot_3
+      name: Other_Robot_red_3
       rect:
         serializedVersion: 2
         x: 64
@@ -188,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bddb82b392a010fd0800000000000000
-      internalID: -2377607956072448549
+      spriteID: 9ebc33bd0bff281b0800000000000000
+      internalID: -5655677046966989847
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rook_Robot_4
+      name: Other_Robot_red_4
       rect:
         serializedVersion: 2
         x: 0
@@ -209,8 +212,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89812b9a6a3635d00800000000000000
-      internalID: 960220713022789784
+      spriteID: 256fdab079d052550800000000000000
+      internalID: 6135325009749341778
       vertices: []
       indices: 
       edges: []
