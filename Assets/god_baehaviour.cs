@@ -103,6 +103,12 @@ public class god_baehaviour : MonoBehaviour
     {
         Vector3Int cellPosition = getCellPosition(unitToCommand);  
         Debug.Log(cellPosition);
+        for(int i = 0; i < command.nbOfSteps; i++)
+        {
+            Vector2Int nextCellLocation = new Vector2Int(directionToMutatorVector[command.directionOfMovement].x,
+                directionToMutatorVector[command.directionOfMovement].y);
+            GameObject.Find("Map").GetComponent<Grid>();
+        }
     }
 
     Vector3Int getCellPosition(GameObject unitToCommand)
