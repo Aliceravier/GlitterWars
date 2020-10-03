@@ -92,28 +92,43 @@ public class god_baehaviour : MonoBehaviour
             }
         }
         //get actual number of steps possible
-        updateNbOfPossibleSteps(command, unitToCommand);
-        
+        getCollisionLocationAndUpdateSteps(command.directionOfMovement, unitToCommand, command);
         //movement
         StartCoroutine(moveUnit(unitToCommand, command));
                 
     }
 
-    void updateNbOfPossibleSteps(Command command, GameObject unitToCommand)
+    Vector2Int getCollisionLocationAndUpdateSteps(Command.Direction direction, GameObject unitToCommand, Command command)
     {
-        Vector3Int cellPosition = getCellPosition(unitToCommand);  
-        Debug.Log(cellPosition);
-        for(int i = 0; i < command.nbOfSteps; i++)
+        Vector2Int cellPosition = getCellPosition(unitToCommand);  
+        for(int i = 0; i < 22; i++)
         {
-            Vector2Int nextCellLocation = new Vector2Int(directionToMutatorVector[command.directionOfMovement].x,
-                directionToMutatorVector[command.directionOfMovement].y);
-            GameObject.Find("Map").GetComponent<Grid>();
+            Vector2Int nextCellLocation = new Vector2Int(cellPosition.x+directionToMutatorVector[direction].x,
+                cellPosition.y+directionToMutatorVector[direction].y);
+            if (!(Mathf.Abs(nextCellLocation.x) <= 5 && Mathf.Abs(nextCellLocation.y) <= 5))
+            {
+                if (i < command.nbOfSteps)
+                    command.nbOfSteps = i;
+                return nextCellLocation;
+            }         
+            foreach(GameObject unit in units)
+            {
+                if(unit.GetComponent<unit_behaviour>().id != unitToCommand.GetComponent<unit_behaviour>().id 
+                    && getCellPosition(unit) == getCellPosition(unitToCommand))
+                {
+                    if (i < command.nbOfSteps)
+                        command.nbOfSteps = i;
+                    return nextCellLocation;
+                }
+            }
+            cellPosition = nextCellLocation;
         }
+        return new Vector2Int(0,0);
     }
 
-    Vector3Int getCellPosition(GameObject unitToCommand)
+    Vector2Int getCellPosition(GameObject unitToCommand)
     {
-        return GameObject.Find("Map").GetComponent<Grid>().WorldToCell(unitToCommand.GetComponent<Transform>().position + new Vector3(2,1,0));
+        return (Vector2Int) GameObject.Find("Map").GetComponent<Grid>().WorldToCell(unitToCommand.GetComponent<Transform>().position + new Vector3(2,1,0));
     }
 
 
@@ -126,8 +141,7 @@ public class god_baehaviour : MonoBehaviour
             unitPosition.y + command.nbOfSteps * widthOfOneTile * directionToMutatorVector[command.directionOfMovement].y,
             unitPosition.z);
         float step = speedOfUnits * Time.deltaTime;
-        Debug.Log(unitToCommand.GetComponent<Transform>().position.x != targetPosition.x
-            && unitToCommand.GetComponent<Transform>().position.y != targetPosition.y);
+        Debug.Log(unitPosition != targetPosition);
         //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), 10);
         int i = 0;
         while (i < 100)
