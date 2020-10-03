@@ -45,6 +45,28 @@ public class unit_behaviour : MonoBehaviour
         shootloc = new Vector3Int(0, 0, 0);
     }
 
+    public void turn(Command.Direction dir) {
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        // Non-diagonals
+        if (dir == Command.Direction.North)
+            spriteRenderer.sprite = spriteArray[3];
+        else if (dir == Command.Direction.East)
+            spriteRenderer.sprite = spriteArray[4];
+        else if (dir == Command.Direction.South)
+            spriteRenderer.sprite = spriteArray[1];
+        else if (dir == Command.Direction.East)
+            spriteRenderer.sprite = spriteArray[0];
+        // Diagonals
+        else if (dir == Command.Direction.NorthEast)
+            spriteRenderer.sprite = spriteArray[3];
+        else if (dir == Command.Direction.SouthEast)
+            spriteRenderer.sprite = spriteArray[1];
+        else if (dir == Command.Direction.SouthWest)
+            spriteRenderer.sprite = spriteArray[2];
+        else
+            spriteRenderer.sprite = spriteArray[4];
+    }
+
     void Update()
     {
         if (movementGrid.activeSelf && Input.GetMouseButtonDown(0) && !waiting)
