@@ -37,6 +37,8 @@ public class unit_behaviour : NetworkBehaviour
             if (Mathf.Abs(coordinate.x) < lengthOfMovement && Mathf.Abs(coordinate.y) < lengthOfMovement)
             {
 
+                movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, null);
+                   
                 Debug.Log(coordinate);
             }
             else
