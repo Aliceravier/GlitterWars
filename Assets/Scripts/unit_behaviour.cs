@@ -24,6 +24,7 @@ public class unit_behaviour : MonoBehaviour
     GameObject movementGrid;
     Vector3Int offset = new Vector3Int(1, 3, 0);
     public List<Vector3Int> allowedSquares = new List<Vector3Int>();
+    public Sprite[] spriteArray;
 
     private bool waiting = false;
 
@@ -44,6 +45,28 @@ public class unit_behaviour : MonoBehaviour
         shootloc = new Vector3Int(0, 0, 0);
     }
 
+    public void turn(Command.Direction dir) {
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        // Non-diagonals
+        if (dir == Command.Direction.North)
+            spriteRenderer.sprite = spriteArray[3];
+        else if (dir == Command.Direction.East)
+            spriteRenderer.sprite = spriteArray[4];
+        else if (dir == Command.Direction.South)
+            spriteRenderer.sprite = spriteArray[1];
+        else if (dir == Command.Direction.East)
+            spriteRenderer.sprite = spriteArray[0];
+        // Diagonals
+        else if (dir == Command.Direction.NorthEast)
+            spriteRenderer.sprite = spriteArray[3];
+        else if (dir == Command.Direction.SouthEast)
+            spriteRenderer.sprite = spriteArray[1];
+        else if (dir == Command.Direction.SouthWest)
+            spriteRenderer.sprite = spriteArray[2];
+        else
+            spriteRenderer.sprite = spriteArray[4];
+    }
+
     void Update()
     {
         if (movementGrid.activeSelf && Input.GetMouseButtonDown(0) && !waiting)
@@ -61,7 +84,7 @@ public class unit_behaviour : MonoBehaviour
                     Debug.Log("Here we go!!!!");
                     status = Status.Moved;
                     moveloc = coordinate;
-                    StartCoroutine(Wait(1));
+                    StartCoroutine(Wait(0.5f));
                     generateCoords(20);
                 }
             }
@@ -69,7 +92,7 @@ public class unit_behaviour : MonoBehaviour
                 Debug.Log("Time to shoo1111");
                 status = Status.Shot;
                 shootloc = coordinate;
-                StartCoroutine(Wait(1));
+                StartCoroutine(Wait(0.5f));
                 movementGrid.SetActive(false);
                 Command com = getDirections();
                 //Debug.Log((com.nbOfSteps, com.unitID, com.directionOfMovement, com.directionOfShot));
@@ -79,6 +102,26 @@ public class unit_behaviour : MonoBehaviour
             
             //TileData tile = movementGrid.GetComponent<Grid>().SetColor(new Vector3Int(), Color.black);
         }
+        if (Input.GetKeyDown(KeyCode.W))
+            if (diagonal)
+                turn(Command.Direction.NorthEast);
+            else
+                turn(Command.Direction.North);
+        else if (Input.GetKeyDown(KeyCode.D))
+            if (diagonal)
+                turn(Command.Direction.SouthEast);
+            else
+                turn(Command.Direction.East);
+        else if (Input.GetKeyDown(KeyCode.S))
+            if (diagonal)
+                turn(Command.Direction.SouthWest);
+            else
+                turn(Command.Direction.South);
+        else if (Input.GetKeyDown(KeyCode.A))
+            if (diagonal)
+                turn(Command.Direction.NorthWest);
+            else
+                turn(Command.Direction.West);
     }
 
     void generateCoords(int length)
@@ -183,6 +226,5 @@ public class unit_behaviour : MonoBehaviour
         waiting = true;
         yield return new WaitForSeconds(seconds);
         waiting = false;
-        Debug.Log("waiting");
     }
 }
