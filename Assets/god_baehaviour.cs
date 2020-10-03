@@ -60,6 +60,5 @@ public class god_baehaviour : MonoBehaviour
 
     void ExecuteCommand(Command command)
     {
-        command.
     }
 }

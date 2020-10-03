@@ -99,29 +99,7 @@ public class unit_behaviour : NetworkBehaviour
         }
     }
 
-<<<<<<< HEAD
-    void Update()
-    {
-        if (movementGrid.activeSelf && Input.GetMouseButtonDown(0))
-        {
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            // (int)pos.x, (int)pos.y, 0)
-            Vector3Int coordinate = transform.Find("Grid").GetComponent<Grid>().WorldToCell(pos) - offset;
-            if (Mathf.Abs(coordinate.x) < lengthOfMovement && Mathf.Abs(coordinate.y) < lengthOfMovement)
-            {
-                Tile tile = glitterTile;
-                movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, tile);                 
-                Debug.Log(coordinate);
-            }
-            else
-                movementGrid.SetActive(false);
-            
-            //TileData tile = movementGrid.GetComponent<Grid>().SetColor(new Vector3Int(), Color.black);
-        }
-    }
 
-=======
->>>>>>> edb782a3660adbfc05464c6b4efe5bd6bde81d12
     // Update is called once per frame
     void OnMouseOver()
     {
