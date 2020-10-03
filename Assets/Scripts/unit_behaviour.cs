@@ -131,10 +131,6 @@ public class unit_behaviour : MonoBehaviour
             movedir = getCardinalDirection(moveloc);
             shootdir = getCardinalDirection(shootloc);
         }
-        Debug.Log(moveloc);
-        Debug.Log(shootloc);
-        Debug.Log(movedir);
-        Debug.Log(shootdir);
         return new Command(steps, id, movedir, shootdir);
     }
 
