@@ -81,7 +81,6 @@ public class unit_behaviour : MonoBehaviour
                 {
                     Tile tile = glitterTile;
                     movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, tile);
-                    Debug.Log("Here we go!!!!");
                     status = Status.Moved;
                     moveloc = coordinate;
                     StartCoroutine(Wait(0.5f));
@@ -89,7 +88,6 @@ public class unit_behaviour : MonoBehaviour
                 }
             }
             else if (allowedSquares.Contains(coordinate) && status == Status.Moved) {
-                Debug.Log("Time to shoo1111");
                 status = Status.Shot;
                 shootloc = coordinate;
                 StartCoroutine(Wait(0.5f));
