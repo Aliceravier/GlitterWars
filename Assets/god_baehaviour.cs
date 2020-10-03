@@ -30,15 +30,12 @@ public class god_baehaviour : MonoBehaviour
         commandsQueue.Enqueue(new List<Command>());
         commandsQueue.Enqueue(new List<Command>());
         //initialise unit positions
-        unitPositions = new Vector3[units.Length];
-        int i = 0;
-        foreach(GameObject unit in units)
-        {
-           unitPositions[i] = unit.GetComponent<Transform>().position;
-           unitPositions[i].z = unit.GetComponent<unit_behaviour>().id;
-           i++;
-        }
         
+    }
+
+    void die(GameObject unit) {
+        Destroy(unit);
+        units = GameObject.FindGameObjectsWithTag("Unit");
     }
 
     // Update is called once per frame
