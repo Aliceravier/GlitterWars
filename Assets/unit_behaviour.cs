@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Tilemaps;
+using UnityEditor;
 
 public class unit_behaviour : NetworkBehaviour
 {
@@ -16,14 +17,38 @@ public class unit_behaviour : NetworkBehaviour
 
     public int lengthOfMovement;
     public List<int> directionsOfMovement; //ints 0 -> 7 indicating all cardinal directions
-    public List<int> directionsOfShot;
+    public bool diagonal;
     GameObject movementGrid;
-    
-    
+    Vector3Int offset = new Vector3Int(1, 3, 0);
+
+
     // Start is called before the first frame update
     void Awake()
     {
-        movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;   
+        movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;
+        Tile tile = AssetDatabase.LoadAssetAtPath<Tile>("Assets/Tiles/Glitter_Floor-1.asset");
+        if (diagonal)
+        {
+            for(int i = -lengthOfMovement+1; i < lengthOfMovement; i++)
+            {
+                for (int mul = -1; mul < 2; mul += 2)
+                {
+                    Vector3Int coord = new Vector3Int(i, i*mul, 0);
+                    movementGrid.GetComponent<Tilemap>().SetTile(coord + offset, tile);
+                }
+
+            }
+        }
+        else
+        {
+            for(int i = -lengthOfMovement+1; i < lengthOfMovement; i++)
+            {
+                Vector3Int coord = new Vector3Int(i, 0, 0);               
+                movementGrid.GetComponent<Tilemap>().SetTile(coord + offset, tile);
+                coord = new Vector3Int(0, i, 0);
+                movementGrid.GetComponent<Tilemap>().SetTile(coord + offset, tile);
+            }
+        }
     }
 
     void Update()
@@ -32,13 +57,11 @@ public class unit_behaviour : NetworkBehaviour
         {
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             // (int)pos.x, (int)pos.y, 0)
-            Vector3Int offset = new Vector3Int(1, 3, 0);
             Vector3Int coordinate = transform.Find("Grid").GetComponent<Grid>().WorldToCell(pos) - offset;
             if (Mathf.Abs(coordinate.x) < lengthOfMovement && Mathf.Abs(coordinate.y) < lengthOfMovement)
             {
-
-                movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, null);
-                   
+                Tile tile = AssetDatabase.LoadAssetAtPath<Tile>("Assets/Tiles/Glitter_Floor-1.asset");
+                movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, tile);                 
                 Debug.Log(coordinate);
             }
             else
