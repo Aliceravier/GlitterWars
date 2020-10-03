@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Command
 {
-    enum Direction{
+    public enum Direction{
         North,
         South,
         East,

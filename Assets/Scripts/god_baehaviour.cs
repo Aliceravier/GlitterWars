@@ -2,24 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Command
-{
-    enum Direction
-    {
-        North,
-        South,
-        East,
-        West,
-        SouthWest,
-        SouthEast,
-        NorthWest,
-        NorthEast
-    }
-
-    private int nbOfSteps;
-    private Direction directionOfMovement;
-    private Direction directionOfShot;
-}
 
 public class god_baehaviour : MonoBehaviour
 {
@@ -60,5 +42,6 @@ public class god_baehaviour : MonoBehaviour
 
     void ExecuteCommand(Command command)
     {
+
     }
 }
