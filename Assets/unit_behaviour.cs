@@ -17,11 +17,13 @@ public class unit_behaviour : NetworkBehaviour
     public int lengthOfMovement;
     public List<int> directionsOfMovement; //ints 0 -> 7 indicating all cardinal directions
     public List<int> directionsOfShot;
+    GameObject movementGrid;
+    
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;   
     }
 
     // Update is called once per frame
@@ -46,5 +48,9 @@ public class unit_behaviour : NetworkBehaviour
                 //TileData tile = movementGrid.GetComponent<Grid>().SetColor(new Vector3Int(), Color.black);
             }
         }
+    }
+
+    public void ToggleGrid(bool isActive){
+        movementGrid.SetActive(isActive);
     }
 }
