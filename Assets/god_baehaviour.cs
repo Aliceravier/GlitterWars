@@ -88,6 +88,8 @@ public class god_baehaviour : MonoBehaviour
                 Debug.Log("unit to command is " + unitToCommand);
             }
         }
+        // Unit died, sorry
+        if (unitToCommand == null) return;
         //get actual number of steps possible
         updateNbOfPossibleSteps(command, unitToCommand);
         
