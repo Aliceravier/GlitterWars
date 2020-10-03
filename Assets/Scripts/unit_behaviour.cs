@@ -27,12 +27,21 @@ public class unit_behaviour : NetworkBehaviour
 
     private bool waiting = false;
 
+    private Vector3Int moveloc;
+
+    private Vector3Int shootloc;
 
     // Start is called before the first frame update
     void Awake()
     {
 
         generateCoords(lengthOfMovement);
+        resetShootAndMove();
+    }
+
+    public void resetShootAndMove() {
+        moveloc = new Vector3Int(0, 0, 0);
+        shootloc = new Vector3Int(0, 0, 0);
     }
 
     void Update()
@@ -51,6 +60,7 @@ public class unit_behaviour : NetworkBehaviour
                     movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, tile);
                     Debug.Log("Here we go!!!!");
                     status = Status.Moved;
+                    moveloc = coordinate;
                     StartCoroutine(Wait(1));
                     generateCoords(20);
                 }
@@ -98,6 +108,52 @@ public class unit_behaviour : NetworkBehaviour
             }
         }
     }
+
+    Command getDirection() {
+        int steps;
+        Command.Direction shootdir;
+        Command.Direction movedir;
+        if (diagonal)
+        {
+            steps = Mathf.Abs(moveloc.x);
+            movedir = getDiagonalDirection(shootloc);
+            shootdir = getDiagonalDirection(shootloc);
+        }
+        else {
+            if (moveloc.x == 0) {
+                steps = moveloc.y;
+            } else {
+                steps = moveloc.x;
+            }
+            movedir = getCardinalDirection(moveloc);
+            shootdir = getCardinalDirection(shootloc);
+        }
+        return new Command(steps, id, movedir, shootdir);
+    }
+
+    Command.Direction getDiagonalDirection(Vector3Int loc) {
+        if (loc.x >= 0 && loc.y >= 0)
+            return Command.Direction.NorthEast;
+        else if (loc.x >= 0 && loc.y < 0)
+            return Command.Direction.SouthEast;
+        else if (loc.x < 0 && loc.y < 0)
+            return Command.Direction.SouthWest;
+        else
+            return Command.Direction.NorthWest;
+    }
+
+    Command.Direction getCardinalDirection(Vector3Int loc)
+    {
+        if (loc.x >= 0 && loc.y == 0)
+            return Command.Direction.East;
+        else if (loc.x < 0 && loc.y == 0)
+            return Command.Direction.West;
+        else if (loc.x == 0 && loc.y >= 0)
+            return Command.Direction.North;
+        else
+            return Command.Direction.South;
+    }
+
 
     // Update is called once per frame
     void OnMouseOver()
