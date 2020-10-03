@@ -98,6 +98,19 @@ public class god_baehaviour : MonoBehaviour
                 
     }
 
+    void shoot(GameObject unitToCommand, Command command) {
+        Vector3Int hit = new Vector3Int(0, 0 ,0);
+        if (Mathf.Abs(hit.x) > 5 || Mathf.Abs(hit.y) > 5)
+            ;
+        else {
+            foreach (GameObject unit in units)
+            {
+                if (getCellPosition(unit) == hit)
+                    die(unit);
+            }
+        }
+    }
+
     void updateNbOfPossibleSteps(Command command, GameObject unitToCommand)
     {
         Vector3Int cellPosition = getCellPosition(unitToCommand);  
