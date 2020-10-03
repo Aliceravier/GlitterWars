@@ -34,6 +34,7 @@ public class CursorBehaviour : NetworkBehaviour
         if (Physics.Raycast(selectionLaser, out whatdIHit)){
             if (whatdIHit.collider.gameObject.CompareTag("Unit"))
             {
+                Debug.Log("wwwwwwww");
                 if (selectedUnit){
                     selectedUnit.ToggleGrid(false);
                 }
