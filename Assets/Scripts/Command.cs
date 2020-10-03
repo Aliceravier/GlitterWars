@@ -19,4 +19,12 @@ public class Command
     public int unitID;
     public Direction directionOfMovement;
     public Direction directionOfShot;
+
+    public Command(int steps, int id, Direction movedir, Direction shootdir)
+    {
+        this.nbOfSteps = steps;
+        this.unitID = id;
+        this.directionOfMovement = movedir;
+        this.directionOfShot = shootdir;
+    }
 }
