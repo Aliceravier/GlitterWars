@@ -9,6 +9,7 @@ public class god_baehaviour : MonoBehaviour
     GameObject[] units;
     Vector3[] unitPositions;
     bool turnHasEnded;
+    public float speedOfUnits = 10;
     Dictionary<Command.Direction, Vector2Int> directionToMutatorVector = new Dictionary<Command.Direction, Vector2Int>(){
         {Command.Direction.North, new Vector2Int(0,1)},
         {Command.Direction.NorthEast, new Vector2Int(1,1)},
@@ -50,18 +51,27 @@ public class god_baehaviour : MonoBehaviour
             foreach(GameObject unit in units)
             {
                 listOfCommands.Add(unit.GetComponent<unit_behaviour>().getDirections());
+                Debug.Log("list of commands is " + unit.GetComponent<unit_behaviour>().getDirections());
             }
             //store lists of commands in a queue, one list entry per day/turn
             commandsQueue.Enqueue(listOfCommands);
+            
 
             //execute the commands through the queue, one day at a time
             List<Command> commandsToExecute = commandsQueue.Dequeue();
-            foreach(Command command in commandsToExecute)
+            
+            foreach (Command command in commandsToExecute)
             {
+                Debug.Log("to execute " + command);
                 ExecuteCommand(command);
             }
+        foreach (GameObject unit in units)
+        {
+            unit.GetComponent<unit_behaviour>().resetShootAndMove();
         }
         turnHasEnded = false;
+        }
+        
     }
 
     public void setTurnEndedToTrue()
@@ -71,29 +81,43 @@ public class god_baehaviour : MonoBehaviour
 
     void ExecuteCommand(Command command)
     {
-        GameObject unitToCommand;
-        Vector2 unitPosition = new Vector2();
+        Debug.Log("in execute command");
+        GameObject unitToCommand = null;
         foreach(GameObject unit in units)
         {
-            if (unit.GetComponent<unit_behaviour>().id == command.unitID) 
+            if (unit.GetComponent<unit_behaviour>().id == command.unitID)
+            {
                 unitToCommand = unit;
+                Debug.Log("unit to command is " + unitToCommand);
+            }
         }
+
         //movement
-        foreach(Vector3 position in unitPositions)
-        {
-            if (position.z == command.unitID)
-                unitPosition = new Vector2(position.x, position.y);
-        }
+        StartCoroutine(moveUnit(unitToCommand, command));
+            
+    }
+
+    IEnumerator moveUnit(GameObject unitToCommand, Command command)
+    {
+        Vector3 unitPosition = unitToCommand.GetComponent<Transform>().position;
         Vector3 sizeOfOneTile = GameObject.Find("Map").GetComponent<Grid>().cellSize;
         float widthOfOneTile = sizeOfOneTile.x;
-        Debug.Log(sizeOfOneTile);
-        Debug.Log(command.nbOfSteps);
-        Debug.Log(directionToMutatorVector[command.directionOfMovement].x);
-        Vector2 targetPosition = new Vector2(command.nbOfSteps * widthOfOneTile * directionToMutatorVector[command.directionOfMovement].x,
-            command.nbOfSteps * widthOfOneTile * directionToMutatorVector[command.directionOfMovement].y);
-        Vector2.MoveTowards(unitPosition, targetPosition, command.nbOfSteps * widthOfOneTile);
-
-
-
+        Vector3 targetPosition = new Vector3(unitPosition.x + command.nbOfSteps * widthOfOneTile * directionToMutatorVector[command.directionOfMovement].x,
+            unitPosition.y + command.nbOfSteps * widthOfOneTile * directionToMutatorVector[command.directionOfMovement].y,
+            unitPosition.z);
+        float step = speedOfUnits * Time.deltaTime;
+        Debug.Log(unitToCommand.GetComponent<Transform>().position.x != targetPosition.x
+            && unitToCommand.GetComponent<Transform>().position.y != targetPosition.y);
+        //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), 10);
+        int i = 0;
+        while (i < 100)
+        {
+            Debug.Log("moving");
+            //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), step);
+            unitToCommand.GetComponent<Transform>().position = Vector3.MoveTowards(unitPosition, targetPosition, step);
+            unitPosition = unitToCommand.GetComponent<Transform>().position;
+            yield return new WaitForSeconds(0.01f);
+            i++;
+        }
     }
 }

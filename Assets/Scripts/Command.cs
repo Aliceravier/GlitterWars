@@ -27,4 +27,10 @@ public class Command
         this.directionOfMovement = movedir;
         this.directionOfShot = shootdir;
     }
+
+    public override string ToString()
+    {
+        return nbOfSteps.ToString() + unitID.ToString() + directionOfMovement + directionOfShot;
+
+    }
 }
