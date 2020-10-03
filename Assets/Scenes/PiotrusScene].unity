@@ -4724,6 +4724,12 @@ PrefabInstance:
       propertyPath: m_ChunkCullingBounds.y
       value: 31.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1553493359241046352, guid: cd886d6fa701a37478b36159360cbfcb,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 325510999958906572, guid: a3c71abdaff7d6f47929290c4a72ee46,
+        type: 3}
     - target: {fileID: 2909630849607125638, guid: cd886d6fa701a37478b36159360cbfcb,
         type: 3}
       propertyPath: m_Tiles.Array.size
