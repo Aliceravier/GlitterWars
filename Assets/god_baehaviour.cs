@@ -78,18 +78,18 @@ public class god_baehaviour : MonoBehaviour
 
     void ExecuteCommand(Command command)
     {
-        Debug.Log("in execute command");
         GameObject unitToCommand = null;
         foreach(GameObject unit in units)
         {
             if (unit.GetComponent<unit_behaviour>().id == command.unitID)
             {
                 unitToCommand = unit;
-                Debug.Log("unit to command is " + unitToCommand);
             }
         }
         // Unit died, sorry
         if (unitToCommand == null) return;
+        //turn unit before moving
+        unitToCommand.GetComponent<unit_behaviour>().turn(command.directionOfMovement);
         //get actual number of steps possible
         getCollisionLocationAndUpdateSteps(command.directionOfMovement, unitToCommand, command);
         //movement
