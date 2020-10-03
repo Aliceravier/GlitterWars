@@ -5,7 +5,7 @@ using Mirror;
 using UnityEngine.Tilemaps;
 using UnityEditor;
 
-public class unit_behaviour : NetworkBehaviour
+public class unit_behaviour : MonoBehaviour
 {
     enum Status
     {

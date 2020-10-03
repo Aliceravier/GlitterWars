@@ -7,9 +7,20 @@ public class god_baehaviour : MonoBehaviour
 {
     Queue<List<Command>> commandsQueue = new Queue<List<Command>>();
     GameObject[] units;
-    Vector3Int[] unitPositions;
-    Dictionary<Command.Direction, Vector2Int> directionToMutatorVector;
+    Vector3[] unitPositions;
     bool turnHasEnded;
+    Dictionary<Command.Direction, Vector2Int> directionToMutatorVector = new Dictionary<Command.Direction, Vector2Int>(){
+        {Command.Direction.North, new Vector2Int(0,1)},
+        {Command.Direction.NorthEast, new Vector2Int(1,1)},
+        {Command.Direction.East, new Vector2Int(1,0)},
+        {Command.Direction.SouthEast, new Vector2Int(1,-1)},
+        {Command.Direction.South, new Vector2Int(0,-1)},
+        {Command.Direction.SouthWest, new Vector2Int(-1,-1)},
+        {Command.Direction.West, new Vector2Int(-1,0)},
+        {Command.Direction.NorthWest, new Vector2Int(-1,1)}
+    };
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +29,15 @@ public class god_baehaviour : MonoBehaviour
         commandsQueue.Enqueue(new List<Command>());
         commandsQueue.Enqueue(new List<Command>());
         //initialise unit positions
+        unitPositions = new Vector3[units.Length];
+        int i = 0;
+        foreach(GameObject unit in units)
+        {
+           unitPositions[i] = unit.GetComponent<Transform>().position;
+           unitPositions[i].z = unit.GetComponent<unit_behaviour>().id;
+           i++;
+        }
+        
     }
 
     // Update is called once per frame
@@ -59,13 +79,16 @@ public class god_baehaviour : MonoBehaviour
                 unitToCommand = unit;
         }
         //movement
-        foreach(Vector3Int position in unitPositions)
+        foreach(Vector3 position in unitPositions)
         {
             if (position.z == command.unitID)
                 unitPosition = new Vector2(position.x, position.y);
         }
         Vector3 sizeOfOneTile = GameObject.Find("Map").GetComponent<Grid>().cellSize;
         float widthOfOneTile = sizeOfOneTile.x;
+        Debug.Log(sizeOfOneTile);
+        Debug.Log(command.nbOfSteps);
+        Debug.Log(directionToMutatorVector[command.directionOfMovement].x);
         Vector2 targetPosition = new Vector2(command.nbOfSteps * widthOfOneTile * directionToMutatorVector[command.directionOfMovement].x,
             command.nbOfSteps * widthOfOneTile * directionToMutatorVector[command.directionOfMovement].y);
         Vector2.MoveTowards(unitPosition, targetPosition, command.nbOfSteps * widthOfOneTile);

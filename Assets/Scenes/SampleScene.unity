@@ -145,6 +145,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: White tower (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 82111645284982628, guid: cd886d6fa701a37478b36159360cbfcb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2909630849607125638, guid: cd886d6fa701a37478b36159360cbfcb,
         type: 3}
       propertyPath: m_TileAssetArray.Array.data[1].m_Data
@@ -240,7 +245,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1869593808, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
 --- !u!213 &286423651
 Sprite:
@@ -3353,6 +3359,36 @@ Sprite:
   m_PhysicsShape: []
   m_Bones: []
   m_SpriteID: 
+--- !u!1 &1446257620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1446257621}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1446257621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446257620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.553287, y: 0.1947246, z: -24.37793}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!213 &1522081836
 Sprite:
   m_ObjectHideFlags: 0
@@ -4036,6 +4072,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: White tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 82111645284982628, guid: cd886d6fa701a37478b36159360cbfcb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 275837188649061062, guid: cd886d6fa701a37478b36159360cbfcb,
         type: 3}
@@ -4937,5 +4978,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1869593808, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cd886d6fa701a37478b36159360cbfcb, type: 3}
