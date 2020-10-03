@@ -47,7 +47,7 @@ public class unit_behaviour : NetworkBehaviour
             {
                 if (allowedSquares.Contains(coordinate))
                 {
-                    Tile tile = AssetDatabase.LoadAssetAtPath<Tile>("Assets/Tiles/Glitter_Floor-1.asset");
+                    Tile tile = glitterTile;
                     movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, tile);
                     Debug.Log("Here we go!!!!");
                     status = Status.Moved;
@@ -98,7 +98,6 @@ public class unit_behaviour : NetworkBehaviour
             }
         }
     }
-
 
     // Update is called once per frame
     void OnMouseOver()
