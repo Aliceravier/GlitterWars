@@ -68,8 +68,11 @@ public class unit_behaviour : NetworkBehaviour
             else if (allowedSquares.Contains(coordinate) && status == Status.Moved) {
                 Debug.Log("Time to shoo1111");
                 status = Status.Shot;
+                shootloc = coordinate;
                 StartCoroutine(Wait(1));
                 movementGrid.SetActive(false);
+                Command com = getDirections();
+                Debug.Log((com.nbOfSteps, com.unitID, com.directionOfMovement, com.directionOfShot));
             }
             else
                 movementGrid.SetActive(false);
@@ -109,14 +112,14 @@ public class unit_behaviour : NetworkBehaviour
         }
     }
 
-    Command getDirection() {
+    public Command getDirections() {
         int steps;
         Command.Direction shootdir;
         Command.Direction movedir;
         if (diagonal)
         {
             steps = Mathf.Abs(moveloc.x);
-            movedir = getDiagonalDirection(shootloc);
+            movedir = getDiagonalDirection(moveloc);
             shootdir = getDiagonalDirection(shootloc);
         }
         else {
@@ -128,6 +131,10 @@ public class unit_behaviour : NetworkBehaviour
             movedir = getCardinalDirection(moveloc);
             shootdir = getCardinalDirection(shootloc);
         }
+        Debug.Log(moveloc);
+        Debug.Log(shootloc);
+        Debug.Log(movedir);
+        Debug.Log(shootdir);
         return new Command(steps, id, movedir, shootdir);
     }
 
