@@ -25,7 +25,7 @@ public class unit_behaviour : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void onMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
