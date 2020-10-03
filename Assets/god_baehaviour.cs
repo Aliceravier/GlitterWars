@@ -129,7 +129,8 @@ public class god_baehaviour : MonoBehaviour
             && unitToCommand.GetComponent<Transform>().position.y != targetPosition.y);
         //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), 10);
         int i = 0;
-        while (i < 100)
+        while (Mathf.Abs(unitToCommand.GetComponent<Transform>().position.x - targetPosition.x) > 0.01 ||
+            Mathf.Abs(unitToCommand.GetComponent<Transform>().position.y - targetPosition.y) > 0.01)
         {
             Debug.Log("moving");
             //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), step);
