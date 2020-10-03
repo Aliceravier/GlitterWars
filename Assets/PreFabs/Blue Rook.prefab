@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1869593807}
   - component: {fileID: 926961315}
   m_Layer: 0
-  m_Name: White tower
+  m_Name: Blue Rook
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,14 +113,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e0d6211b5de734ca4cff927b865a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   lengthOfMovement: 4
   glitterTile: {fileID: 11400000, guid: 11f961d2b0cacfb41b0807daae921f63, type: 2}
   directionsOfMovement: 00000000000000000000000000000000
   diagonal: 0
   id: 0
   allowedSquares: []
+  spriteArray:
+  - {fileID: 325510999958906572, guid: a3c71abdaff7d6f47929290c4a72ee46, type: 3}
+  - {fileID: 2916191673623777531, guid: a3c71abdaff7d6f47929290c4a72ee46, type: 3}
+  - {fileID: 3687827504743351247, guid: a3c71abdaff7d6f47929290c4a72ee46, type: 3}
+  - {fileID: -2377607956072448549, guid: a3c71abdaff7d6f47929290c4a72ee46, type: 3}
+  - {fileID: 960220713022789784, guid: a3c71abdaff7d6f47929290c4a72ee46, type: 3}
 --- !u!61 &926961315
 BoxCollider2D:
   m_ObjectHideFlags: 0

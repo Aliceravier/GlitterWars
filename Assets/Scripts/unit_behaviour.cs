@@ -24,6 +24,7 @@ public class unit_behaviour : MonoBehaviour
     GameObject movementGrid;
     Vector3Int offset = new Vector3Int(1, 3, 0);
     public List<Vector3Int> allowedSquares = new List<Vector3Int>();
+    public Sprite[] spriteArray;
 
     private bool waiting = false;
 
