@@ -16,6 +16,7 @@ public class Command
     }
 
     public int nbOfSteps;
+    public int unitID;
     public Direction directionOfMovement;
     public Direction directionOfShot;
 }
