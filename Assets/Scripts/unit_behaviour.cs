@@ -84,7 +84,7 @@ public class unit_behaviour : MonoBehaviour
                     Debug.Log("Here we go!!!!");
                     status = Status.Moved;
                     moveloc = coordinate;
-                    StartCoroutine(Wait(1));
+                    StartCoroutine(Wait(0.5f));
                     generateCoords(20);
                 }
             }
@@ -92,7 +92,7 @@ public class unit_behaviour : MonoBehaviour
                 Debug.Log("Time to shoo1111");
                 status = Status.Shot;
                 shootloc = coordinate;
-                StartCoroutine(Wait(1));
+                StartCoroutine(Wait(0.5f));
                 movementGrid.SetActive(false);
                 Command com = getDirections();
                 //Debug.Log((com.nbOfSteps, com.unitID, com.directionOfMovement, com.directionOfShot));
@@ -102,6 +102,26 @@ public class unit_behaviour : MonoBehaviour
             
             //TileData tile = movementGrid.GetComponent<Grid>().SetColor(new Vector3Int(), Color.black);
         }
+        if (Input.GetKeyDown(KeyCode.W))
+            if (diagonal)
+                turn(Command.Direction.NorthEast);
+            else
+                turn(Command.Direction.North);
+        else if (Input.GetKeyDown(KeyCode.D))
+            if (diagonal)
+                turn(Command.Direction.SouthEast);
+            else
+                turn(Command.Direction.East);
+        else if (Input.GetKeyDown(KeyCode.S))
+            if (diagonal)
+                turn(Command.Direction.SouthWest);
+            else
+                turn(Command.Direction.South);
+        else if (Input.GetKeyDown(KeyCode.A))
+            if (diagonal)
+                turn(Command.Direction.NorthWest);
+            else
+                turn(Command.Direction.West);
     }
 
     void generateCoords(int length)
@@ -210,6 +230,5 @@ public class unit_behaviour : MonoBehaviour
         waiting = true;
         yield return new WaitForSeconds(seconds);
         waiting = false;
-        Debug.Log("waiting");
     }
 }
