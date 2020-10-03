@@ -26,12 +26,24 @@ public class unit_behaviour : NetworkBehaviour
         movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;   
     }
 
+    void Update()
+    {
+        if (movementGrid.activeSelf)
+        {
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            // (int)pos.x, (int)pos.y, 0)
+            Vector3Int coordinate = transform.Find("Grid").GetComponent<Grid>().WorldToCell(pos);
+            //Debug.Log(coordinate);
+            //TileData tile = movementGrid.GetComponent<Grid>().SetColor(new Vector3Int(), Color.black);
+        }
+    }
+
     // Update is called once per frame
     void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;
+            movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;
             if (!movementGrid.activeSelf)
             {
                 movementGrid.SetActive(true);
