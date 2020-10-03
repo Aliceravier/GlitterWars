@@ -14,8 +14,8 @@ public class unit_behaviour : NetworkBehaviour
         Shot
     }
     private Status status;
-
     public int lengthOfMovement;
+    public Tile glitterTile;
     public List<int> directionsOfMovement; //ints 0 -> 7 indicating all cardinal directions
     public bool diagonal;
     GameObject movementGrid;
@@ -26,7 +26,7 @@ public class unit_behaviour : NetworkBehaviour
     void Awake()
     {
         movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;
-        Tile tile = AssetDatabase.LoadAssetAtPath<Tile>("Assets/Tiles/Glitter_Floor-1.asset");
+        Tile tile = glitterTile;
         if (diagonal)
         {
             for(int i = -lengthOfMovement+1; i < lengthOfMovement; i++)
@@ -60,7 +60,7 @@ public class unit_behaviour : NetworkBehaviour
             Vector3Int coordinate = transform.Find("Grid").GetComponent<Grid>().WorldToCell(pos) - offset;
             if (Mathf.Abs(coordinate.x) < lengthOfMovement && Mathf.Abs(coordinate.y) < lengthOfMovement)
             {
-                Tile tile = AssetDatabase.LoadAssetAtPath<Tile>("Assets/Tiles/Glitter_Floor-1.asset");
+                Tile tile = glitterTile;
                 movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, tile);                 
                 Debug.Log(coordinate);
             }

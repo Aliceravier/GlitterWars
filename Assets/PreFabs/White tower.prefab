@@ -117,8 +117,9 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   lengthOfMovement: 4
+  glitterTile: {fileID: 11400000, guid: 11f961d2b0cacfb41b0807daae921f63, type: 2}
   directionsOfMovement: 00000000000000000000000000000000
-  directionsOfShot: 
+  diagonal: 0
 --- !u!61 &926961315
 BoxCollider2D:
   m_ObjectHideFlags: 0

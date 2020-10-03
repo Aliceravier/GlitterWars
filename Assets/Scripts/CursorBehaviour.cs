@@ -20,10 +20,13 @@ public class CursorBehaviour : NetworkBehaviour
     {
         Vector3 position = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         position = new Vector3(position.x, position.y, 0);
-        transform.position = grid.CellToWorld(grid.WorldToCell(position)) + grid.cellSize / 2;  
-        if (Input.GetMouseButton(0)){
-            SelectUnit();
+        if (isLocalPlayer){
+            transform.position = grid.CellToWorld(grid.WorldToCell(position)) + grid.cellSize / 2;  
+            if (Input.GetMouseButton(0)){
+                SelectUnit();
+            }
         }
+        
         
     }
 
