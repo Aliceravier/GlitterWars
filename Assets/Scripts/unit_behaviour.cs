@@ -166,9 +166,9 @@ public class unit_behaviour : MonoBehaviour
         }
         else {
             if (moveloc.x == 0) {
-                steps = moveloc.y;
+                steps = Mathf.Abs(moveloc.y);
             } else {
-                steps = moveloc.x;
+                steps = Mathf.Abs(moveloc.x);
             }
             movedir = getCardinalDirection(moveloc);
             shootdir = getCardinalDirection(shootloc);
