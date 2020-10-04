@@ -177,6 +177,7 @@ public class god_baehaviour : MonoBehaviour
         torpedo.transform.Rotate(new Vector3(0, 0, angle));
         float step = speedOfUnits* Time.deltaTime;
         Debug.Log("ffed");
+        Animator anim = torpedo.GetComponent<Animator>();
 
         Debug.Log(curpos);
         Debug.Log(endpos);
@@ -187,6 +188,8 @@ public class god_baehaviour : MonoBehaviour
             torpedo.transform.position = Vector3.MoveTowards(torpedo.transform.position, endpos, step*1.5f);
             yield return new WaitForSeconds(0.01f);
         }
+        anim.SetBool("exploded", true);
+        yield return new WaitForSeconds(1f);
         Destroy(torpedo);
     }
 
