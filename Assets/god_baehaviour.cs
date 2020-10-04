@@ -14,6 +14,8 @@ public class god_baehaviour : MonoBehaviour
     public GameObject dayText;
     
     private int day = 0;
+
+    private GameObject endTurnButton;
     Dictionary<Command.Direction, Vector2Int> directionToMutatorVector = new Dictionary<Command.Direction, Vector2Int>(){
         {Command.Direction.North, new Vector2Int(0,1)},
         {Command.Direction.NorthEast, new Vector2Int(1,1)},
@@ -34,62 +36,20 @@ public class god_baehaviour : MonoBehaviour
         commandsQueue.Enqueue(new List<Command>());
         commandsQueue.Enqueue(new List<Command>());
         //initialise 
-
+        endTurnButton = GameObject.Find("End turn button");
     }
 
     void die(GameObject unit) {
+        int size = units.Length;
         Destroy(unit);
         units = GameObject.FindGameObjectsWithTag("Unit");
+        Debug.Log(size -units.Length == 1);
     }
 
     // Update is called once per frame
     void Update()
     {        
-        if (turnHasEnded)
-        {
-            day += 1;
-            //update day in text
-            dayText.GetComponent<Text>().text = "Day " + day;
-            //receive commands for turn
-            List<Command> listOfCommands = new List<Command>();
-            foreach(GameObject unit in units)
-            {
-                listOfCommands.Add(unit.GetComponent<unit_behaviour>().getDirections());
-                Debug.Log("list of commands is " + unit.GetComponent<unit_behaviour>().getDirections());
-            }
-            //store lists of commands in a queue, one list entry per day/turn
-            commandsQueue.Enqueue(listOfCommands);
-            //AI commands
-            List<Command> listOfAICommands = new List<Command>();
-            foreach(GameObject unit in units)
-            {
-                if(unit.GetComponent<unit_behaviour>().allegiance == unit_behaviour.Allegiance.AI)
-                {
-                    listOfAICommands.Add(getRandomCommand(unit));
-                }
-            }
-            commandsQueue.Enqueue(listOfAICommands);
-            //execute the commands through the queue, one day at a time
-            List<Command> commandsToExecute = commandsQueue.Dequeue();
-            
-            foreach (Command command in commandsToExecute)
-            {
-                Debug.Log("to execute " + command);
-                ExecuteCommand(command);
-            }
-            //Execute the AI commands
-            List<Command> aiCommandsToExecute = commandsQueue.Dequeue();
-            foreach (Command command in aiCommandsToExecute)
-            {
-                Debug.Log("to execute " + command);
-                ExecuteCommand(command);
-            }
-        foreach (GameObject unit in units)
-        {
-            unit.GetComponent<unit_behaviour>().resetShootAndMove();
-        }
-        turnHasEnded = false;
-        }
+   
         
     }
 
@@ -107,7 +67,53 @@ public class god_baehaviour : MonoBehaviour
 
     public void setTurnEndedToTrue()
     {
-        turnHasEnded = true;
+        endTurnButton.SetActive(false);
+        day += 1;
+        //update day in text
+        dayText.GetComponent<Text>().text = "Day " + day;
+        //receive commands for turn
+        List<Command> listOfCommands = new List<Command>();
+        foreach (GameObject unit in units)
+        {
+            if (unit != null)
+            {
+                listOfCommands.Add(unit.GetComponent<unit_behaviour>().getDirections());
+                Debug.Log("list of commands is " + unit.GetComponent<unit_behaviour>().getDirections());
+            }
+        }
+        //store lists of commands in a queue, one list entry per day/turn
+        commandsQueue.Enqueue(listOfCommands);
+        //AI commands
+        List<Command> listOfAICommands = new List<Command>();
+        foreach (GameObject unit in units)
+        {
+            if (unit != null && unit.GetComponent<unit_behaviour>().allegiance == unit_behaviour.Allegiance.AI)
+            {
+                listOfAICommands.Add(getRandomCommand(unit));
+            }
+        }
+        commandsQueue.Enqueue(listOfAICommands);
+        //execute the commands through the queue, one day at a time
+        List<Command> commandsToExecute = commandsQueue.Dequeue();
+
+        foreach (Command command in commandsToExecute)
+        {
+            Debug.Log("to execute " + command);
+            ExecuteCommand(command);
+        }
+        //Execute the AI commands
+        List<Command> aiCommandsToExecute = commandsQueue.Dequeue();
+        foreach (Command command in aiCommandsToExecute)
+        {
+            Debug.Log("to execute " + command);
+            ExecuteCommand(command);
+        }
+        foreach (GameObject unit in units)
+        {
+            if (unit != null)
+                unit.GetComponent<unit_behaviour>().resetShootAndMove();
+        }
+        endTurnButton.SetActive(true);
     }
 
     void ExecuteCommand(Command command)
@@ -115,7 +121,7 @@ public class god_baehaviour : MonoBehaviour
         GameObject unitToCommand = null;
         foreach(GameObject unit in units)
         {
-            if (unit.GetComponent<unit_behaviour>().id == command.unitID)
+            if (unit != null && unit.GetComponent<unit_behaviour>().id == command.unitID)
             {
                 unitToCommand = unit;
             }
@@ -137,17 +143,19 @@ public class god_baehaviour : MonoBehaviour
         Vector2Int hit = getCollisionLocationAndUpdateSteps(command.directionOfShot, unitToCommand, command);
         Vector3 worldlocation = getWorldPosition(hit);
         worldlocation.z = unitToCommand.transform.position.z;
-        StartCoroutine(moveRocket(unitToCommand.transform.position, worldlocation, unitToCommand,
-            directionToAngle(command.directionOfShot)));
+        GameObject target = null;
         if (Mathf.Abs(hit.x) > 5 || Mathf.Abs(hit.y) > 5)
             ;
-        else {
+        else
+        {
             foreach (GameObject unit in units)
             {
-                if (getCellPosition(unit) == hit)
-                    die(unit);
+                if (unit != null && getCellPosition(unit) == hit)
+                    target = unit;
             }
         }
+        StartCoroutine(moveRocket(unitToCommand.transform.position, worldlocation, unitToCommand,
+            directionToAngle(command.directionOfShot), target));
     }
 
     public int directionToAngle(Command.Direction dir)
@@ -170,7 +178,7 @@ public class god_baehaviour : MonoBehaviour
             return 45 * 7;
     }
 
-    IEnumerator moveRocket(Vector3 curpos, Vector3 endpos, GameObject unitToCommand, int angle) {
+    IEnumerator moveRocket(Vector3 curpos, Vector3 endpos, GameObject unitToCommand, int angle, GameObject target) {
         GameObject prefab = unitToCommand.GetComponent<unit_behaviour>().torpedo;
         GameObject torpedo = Instantiate(prefab);
         torpedo.transform.position = curpos;
@@ -189,6 +197,7 @@ public class god_baehaviour : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         anim.SetBool("exploded", true);
+        die(target);
         yield return new WaitForSeconds(1f);
         Destroy(torpedo);
     }
@@ -208,8 +217,8 @@ public class god_baehaviour : MonoBehaviour
             }         
             foreach(GameObject unit in units)
             {
-                if(unit.GetComponent<unit_behaviour>().id != unitToCommand.GetComponent<unit_behaviour>().id 
-                    && getCellPosition(unit) == nextCellLocation)
+                if(unit != null && (unit.GetComponent<unit_behaviour>().id != unitToCommand.GetComponent<unit_behaviour>().id 
+                    && getCellPosition(unit) == nextCellLocation))
                 {
                     if (i < command.nbOfSteps)
                         command.nbOfSteps = i;
