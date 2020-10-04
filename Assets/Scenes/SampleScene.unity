@@ -902,6 +902,7 @@ MonoBehaviour:
   destroyedBox: {fileID: -2133506580154830110, guid: f0b4005eccfb2394888eef9fafb8b231,
     type: 3}
   cat: {fileID: 8201000411018994548, guid: 960731c5793f88d408fc37d8b60b1e4e, type: 3}
+  id: 0
 --- !u!213 &286423651
 Sprite:
   m_ObjectHideFlags: 0
@@ -21054,6 +21055,7 @@ MonoBehaviour:
   destroyedBox: {fileID: -2133506580154830110, guid: f0b4005eccfb2394888eef9fafb8b231,
     type: 3}
   cat: {fileID: 8201000411018994548, guid: 960731c5793f88d408fc37d8b60b1e4e, type: 3}
+  id: 1
 --- !u!213 &1522081836
 Sprite:
   m_ObjectHideFlags: 0
@@ -21739,6 +21741,7 @@ MonoBehaviour:
   destroyedBox: {fileID: -2133506580154830110, guid: f0b4005eccfb2394888eef9fafb8b231,
     type: 3}
   cat: {fileID: 8201000411018994548, guid: 960731c5793f88d408fc37d8b60b1e4e, type: 3}
+  id: 2
 --- !u!1001 &2929777214800556507
 PrefabInstance:
   m_ObjectHideFlags: 0
