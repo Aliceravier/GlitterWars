@@ -225,9 +225,9 @@ public class god_baehaviour : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         anim.SetBool("exploded", true);
-        if (target.tag == "unit")
+        if (target != null && target.tag == "unit")
             die(target);
-        else if (target.tag == "Box")
+        else if (target != null && target.tag == "Box")
         {
             target.GetComponent<box_behaviour>().destroyBox();
             int i = 0;
