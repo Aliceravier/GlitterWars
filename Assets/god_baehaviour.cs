@@ -6,13 +6,21 @@ using UnityEngine.UI;
 
 public class god_baehaviour : MonoBehaviour
 {
+
+    public enum GameState {
+        PROGRESS,
+        WON,
+        LOST,
+        TIE
+    }
+
     Queue<List<Command>> commandsQueue = new Queue<List<Command>>();
     GameObject[] units;
     Vector3[] unitPositions;
     bool turnHasEnded;
     public float speedOfUnits = 10;
     public GameObject dayText;
-    
+
     private int day = 0;
 
     private GameObject endTurnButton;
@@ -43,14 +51,29 @@ public class god_baehaviour : MonoBehaviour
         int size = units.Length;
         Destroy(unit);
         units = GameObject.FindGameObjectsWithTag("Unit");
-        Debug.Log(size -units.Length == 1);
+        Debug.Log(size - units.Length == 1);
     }
 
-    // Update is called once per frame
-    void Update()
-    {        
-   
-        
+    public GameState getGameState() {
+        bool enemyAlive = false;
+        bool playerAlive = false;
+
+        foreach (GameObject unit in units)
+        {
+            if (unit != null)
+            {
+                if (unit.GetComponent<unit_behaviour>().allegiance == unit_behaviour.Allegiance.Player)
+                    playerAlive = true;
+                else
+                    enemyAlive = true;
+            }
+        }
+        if (enemyAlive && !playerAlive)
+            ;// Lost
+        else if (playerAlive && !enemyAlive)
+            ; //Won
+        else if (!playerAlive && !enemyAlive)
+            ; //tie
     }
 
     public Command getRandomCommand(GameObject unit)
