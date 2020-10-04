@@ -590,7 +590,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1095583318}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6da6f7f3d5ef057439512ea6186f343d, type: 3}
   m_Name: 
@@ -723,11 +723,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da6f7f3d5ef057439512ea6186f343d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tutorial: Scenes\Lobby
-  game: Scenes\SampleScene
-  won: Scenes\WonScene
-  lost: Scenes\lostscene
-  tie: Scenes\tiscene
+  tutorial: Scenes/Lobby
+  game: Scenes/SampleScene
+  won: Scenes/WonScene
+  lost: Scenes/lostscene
+  tie: Scenes/tiscene
   tutorialScenes:
   - {fileID: 1680378135}
   - {fileID: 1603567807}
