@@ -133,6 +133,63 @@ public class god_baehaviour : MonoBehaviour
         StartCoroutine(moveUnit(unitToCommand, command));               
     }
 
+    void shoot(GameObject unitToCommand, Command command) {
+        Vector2Int hit = getCollisionLocationAndUpdateSteps(command.directionOfShot, unitToCommand, command);
+        Vector3 worldlocation = getWorldPosition(hit);
+        worldlocation.z = unitToCommand.transform.position.z;
+        StartCoroutine(moveRocket(unitToCommand.transform.position, worldlocation, unitToCommand,
+            directionToAngle(command.directionOfShot)));
+        if (Mathf.Abs(hit.x) > 5 || Mathf.Abs(hit.y) > 5)
+            ;
+        else {
+            foreach (GameObject unit in units)
+            {
+                if (getCellPosition(unit) == hit)
+                    die(unit);
+            }
+        }
+    }
+
+    public int directionToAngle(Command.Direction dir)
+    {
+        if (dir == Command.Direction.North)
+            return 45 * 0;
+        else if (dir == Command.Direction.NorthWest)
+            return 45 * 1;
+        else if (dir == Command.Direction.West)
+            return 45 * 2;
+        else if (dir == Command.Direction.SouthWest)
+            return 45 * 3;
+        else if (dir == Command.Direction.South)
+            return 45 * 4;
+        else if (dir == Command.Direction.SouthEast)
+            return 45 * 5;
+        else if (dir == Command.Direction.East)
+            return 45 * 6;
+        else
+            return 45 * 7;
+    }
+
+    IEnumerator moveRocket(Vector3 curpos, Vector3 endpos, GameObject unitToCommand, int angle) {
+        GameObject prefab = unitToCommand.GetComponent<unit_behaviour>().torpedo;
+        GameObject torpedo = Instantiate(prefab);
+        torpedo.transform.position = curpos;
+        torpedo.transform.Rotate(new Vector3(0, 0, angle));
+        float step = speedOfUnits* Time.deltaTime;
+        Debug.Log("ffed");
+
+        Debug.Log(curpos);
+        Debug.Log(endpos);
+        while (Mathf.Abs(torpedo.transform.position.x - endpos.x) > 0.01
+            || Mathf.Abs(torpedo.transform.position.y - endpos.y) > 0.01)
+        {
+            //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), step);
+            torpedo.transform.position = Vector3.MoveTowards(torpedo.transform.position, endpos, step*1.5f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        Destroy(torpedo);
+    }
+
     Vector2Int getCollisionLocationAndUpdateSteps(Command.Direction direction, GameObject unitToCommand, Command command)
     {
         Vector2Int cellPosition = getCellPosition(unitToCommand);  
@@ -166,6 +223,11 @@ public class god_baehaviour : MonoBehaviour
         return (Vector2Int) GameObject.Find("Map").GetComponent<Grid>().WorldToCell(unitToCommand.GetComponent<Transform>().position + new Vector3(2,1,0));
     }
 
+    Vector3 getWorldPosition(Vector2Int pos)
+    {
+        Vector3Int position = (Vector3Int)pos;
+        return GameObject.Find("Map").GetComponent<Grid>().CellToWorld(position - new Vector3Int(2, 1, 0));
+    }
 
     IEnumerator moveUnit(GameObject unitToCommand, Command command)
     {
@@ -176,16 +238,15 @@ public class god_baehaviour : MonoBehaviour
             unitPosition.y + command.nbOfSteps * widthOfOneTile * directionToMutatorVector[command.directionOfMovement].y,
             unitPosition.z);
         float step = speedOfUnits * Time.deltaTime;
-        Debug.Log(unitPosition != targetPosition);
         //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), 10);
         while (Mathf.Abs(unitToCommand.GetComponent<Transform>().position.x - targetPosition.x) > 0.01 ||
             Mathf.Abs(unitToCommand.GetComponent<Transform>().position.y - targetPosition.y) > 0.01)
         {
-            Debug.Log("moving");
             //unitToCommand.GetComponent<Transform>().position = Vector2.MoveTowards(unitPosition, new Vector2(0,0), step);
             unitToCommand.GetComponent<Transform>().position = Vector3.MoveTowards(unitPosition, targetPosition, step);
             unitPosition = unitToCommand.GetComponent<Transform>().position;
             yield return new WaitForSeconds(0.01f);
         }
+        shoot(unitToCommand, command);
     }
 }
