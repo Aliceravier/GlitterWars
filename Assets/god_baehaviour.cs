@@ -54,7 +54,7 @@ public class god_baehaviour : MonoBehaviour
         Debug.Log(size - units.Length == 1);
     }
 
-    public GameState getGameState() {
+    public void getGameState() {
         bool enemyAlive = false;
         bool playerAlive = false;
 
