@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6473257786311309450}
   - component: {fileID: 89685205164476875}
   - component: {fileID: 8929635383963455499}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Alien_Cat_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,3 +132,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bad682d34e83754eace11825e2c7077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1

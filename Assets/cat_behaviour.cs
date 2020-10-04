@@ -17,7 +17,7 @@ public class cat_behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.position = new Vector2(transform.position.x - (speed * Time.deltaTime), transform.position.y);
+        gameObject.transform.position = new Vector3(transform.position.x - (speed * Time.deltaTime), transform.position.y, -10);
         if (gameObject.transform.position.x < -40)
         {
             Destroy(gameObject);

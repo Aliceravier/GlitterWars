@@ -28,7 +28,7 @@ public class box_behaviour : MonoBehaviour
         {
             spriteRenderer.sprite = destroyedBox;
             //instantiate cat
-            Instantiate(cat, transform.position, Quaternion.identity);
+            Instantiate(cat, new Vector3(transform.position.x, transform.position.y, -10), Quaternion.identity);
         }
     }
 }
