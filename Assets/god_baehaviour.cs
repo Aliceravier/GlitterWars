@@ -225,7 +225,7 @@ public class god_baehaviour : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         anim.SetBool("exploded", true);
-        if (target != null && target.tag == "unit")
+        if (target != null && target.tag == "Unit")
             die(target);
         else if (target != null && target.tag == "Box")
         {
@@ -233,7 +233,7 @@ public class god_baehaviour : MonoBehaviour
             int i = 0;
             foreach(GameObject box in boxes)
             {
-                if(target.GetComponent<box_behaviour>().id == box.GetComponent<box_behaviour>().id)
+                if(box != null && target.GetComponent<box_behaviour>().id == box.GetComponent<box_behaviour>().id)
                 {
                     boxes[i] = null;
                 }
