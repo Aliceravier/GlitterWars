@@ -6,20 +6,14 @@ using UnityEngine.UI;
 
 public class god_baehaviour : MonoBehaviour
 {
-
-    public enum GameState {
-        PROGRESS,
-        WON,
-        LOST,
-        TIE
-    }
-
     Queue<List<Command>> commandsQueue = new Queue<List<Command>>();
     GameObject[] units;
     Vector3[] unitPositions;
     bool turnHasEnded;
     public float speedOfUnits = 10;
     public GameObject dayText;
+
+    private SceneControllerScript sceneController;
 
     private int day = 0;
 
@@ -45,13 +39,14 @@ public class god_baehaviour : MonoBehaviour
         commandsQueue.Enqueue(new List<Command>());
         //initialise 
         endTurnButton = GameObject.Find("End turn button");
+        sceneController = GameObject.FindGameObjectWithTag("SceneController").GetComponent<SceneControllerScript>();
     }
 
     void die(GameObject unit) {
         int size = units.Length;
         Destroy(unit);
         units = GameObject.FindGameObjectsWithTag("Unit");
-        Debug.Log(size - units.Length == 1);
+        getGameState();
     }
 
     public void getGameState() {
@@ -69,11 +64,11 @@ public class god_baehaviour : MonoBehaviour
             }
         }
         if (enemyAlive && !playerAlive)
-            ;// Lost
+            sceneController.LostScene();
         else if (playerAlive && !enemyAlive)
-            ; //Won
+            sceneController.WonScene();
         else if (!playerAlive && !enemyAlive)
-            ; //tie
+            sceneController.TieScene();
     }
 
     public Command getRandomCommand(GameObject unit)
@@ -91,6 +86,7 @@ public class god_baehaviour : MonoBehaviour
     public void setTurnEndedToTrue()
     {
         endTurnButton.SetActive(false);
+        getGameState();
         day += 1;
         //update day in text
         dayText.GetComponent<Text>().text = "Day " + day;

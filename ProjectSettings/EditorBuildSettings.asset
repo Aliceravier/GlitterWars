@@ -11,7 +11,22 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Mirror/Examples/Tanks/Scenes/Scene.unity
     guid: 83f9d2fb76f5742448c6e51f258327a2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PiotrusScene].unity
     guid: 2f625a5b12dc03b478f8dd2ca8d7ee42
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: c0b71fddde2afd44e83c57a96531df37
+  - enabled: 1
+    path: Assets/Scenes/lostscene.unity
+    guid: 3907665dce0c436408c7062ea7cb5a7f
+  - enabled: 1
+    path: Assets/Scenes/tiscene.unity
+    guid: 2faf739adf91df9428716cca659b6ae4
+  - enabled: 1
+    path: Assets/Scenes/WonScene.unity
+    guid: 9834946a569b2064f9a93381ba27f20a
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 5dfddea0e4eb27844973ef58b45ff813
   m_configObjects: {}
