@@ -13,7 +13,14 @@ public class unit_behaviour : MonoBehaviour
         Moved,
         Shot
     }
+
+    public enum Allegiance
+    {
+        Player,
+        AI
+    }
     private Status status = Status.Available;
+    public Allegiance allegiance = Allegiance.Player;
 
     public int lengthOfMovement;
     public Tile glitterTile;
@@ -211,7 +218,7 @@ public class unit_behaviour : MonoBehaviour
     // Update is called once per frame
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && !waiting && status != Status.Shot)
+        if (Input.GetMouseButtonDown(0) && !waiting && status != Status.Shot && allegiance == Allegiance.Player)
         {
             movementGrid = transform.Find("Grid").transform.Find("MovementGrid").gameObject;
             if (!movementGrid.activeSelf)

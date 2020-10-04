@@ -25,16 +25,16 @@ public class god_baehaviour : MonoBehaviour
         {Command.Direction.NorthWest, new Vector2Int(-1,1)}
     };
 
-
-
     // Start is called before the first frame update
     void Start()
     {
         units = GameObject.FindGameObjectsWithTag("Unit");
         commandsQueue.Enqueue(new List<Command>());
         commandsQueue.Enqueue(new List<Command>());
+        commandsQueue.Enqueue(new List<Command>());
+        commandsQueue.Enqueue(new List<Command>());
         //initialise 
-        
+
     }
 
     void die(GameObject unit) {
@@ -59,12 +59,27 @@ public class god_baehaviour : MonoBehaviour
             }
             //store lists of commands in a queue, one list entry per day/turn
             commandsQueue.Enqueue(listOfCommands);
-            
-
+            //AI commands
+            List<Command> listOfAICommands = new List<Command>();
+            foreach(GameObject unit in units)
+            {
+                if(unit.GetComponent<unit_behaviour>().allegiance == unit_behaviour.Allegiance.AI)
+                {
+                    listOfAICommands.Add(getRandomCommand(unit));
+                }
+            }
+            commandsQueue.Enqueue(listOfAICommands);
             //execute the commands through the queue, one day at a time
             List<Command> commandsToExecute = commandsQueue.Dequeue();
             
             foreach (Command command in commandsToExecute)
+            {
+                Debug.Log("to execute " + command);
+                ExecuteCommand(command);
+            }
+            //Execute the AI commands
+            List<Command> aiCommandsToExecute = commandsQueue.Dequeue();
+            foreach (Command command in aiCommandsToExecute)
             {
                 Debug.Log("to execute " + command);
                 ExecuteCommand(command);
@@ -76,6 +91,18 @@ public class god_baehaviour : MonoBehaviour
         turnHasEnded = false;
         }
         
+    }
+
+    public Command getRandomCommand(GameObject unit)
+    {
+        unit_behaviour script = unit.GetComponent<unit_behaviour>();
+        int nbSteps = Random.Range(0,script.lengthOfMovement-1);
+        int directionOfMov;
+        if (script.diagonal)
+            directionOfMov = Random.Range(4, 8);
+        else
+            directionOfMov = Random.Range(0, 4);
+        return new Command(nbSteps, script.id, (Command.Direction) directionOfMov, (Command.Direction) Random.Range(0, 8));       
     }
 
     public void setTurnEndedToTrue()
@@ -98,10 +125,12 @@ public class god_baehaviour : MonoBehaviour
         //turn unit before moving
         unitToCommand.GetComponent<unit_behaviour>().turn(command.directionOfMovement);
         //get actual number of steps possible
+        Debug.Log("number of steps is before " + command.nbOfSteps);
         getCollisionLocationAndUpdateSteps(command.directionOfMovement, unitToCommand, command);
+        Debug.Log("cell of collision is "+getCollisionLocationAndUpdateSteps(command.directionOfMovement, unitToCommand, command));
+        Debug.Log("number of steps is now "+command.nbOfSteps);
         //movement
-        StartCoroutine(moveUnit(unitToCommand, command));
-                
+        StartCoroutine(moveUnit(unitToCommand, command));               
     }
 
     void shoot(GameObject unitToCommand, Command command) {
