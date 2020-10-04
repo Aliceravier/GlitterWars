@@ -93,14 +93,14 @@ public class unit_behaviour : MonoBehaviour
                     movementGrid.GetComponent<Tilemap>().SetTile(coordinate + offset, tile);
                     status = Status.Moved;
                     moveloc = coordinate;
-                    StartCoroutine(Wait(0.5f));
+                    StartCoroutine(Wait(0.1f));
                     generateCoords(20);
                 }
             }
             else if (allowedSquares.Contains(coordinate) && status == Status.Moved) {
                 status = Status.Shot;
                 shootloc = coordinate;
-                StartCoroutine(Wait(0.5f));
+                StartCoroutine(Wait(0.1f));
                 movementGrid.SetActive(false);
                 Command com = getDirections();
                 generateCoords(lengthOfMovement);
@@ -224,7 +224,7 @@ public class unit_behaviour : MonoBehaviour
             if (!movementGrid.activeSelf)
             {
                 movementGrid.SetActive(true);
-                StartCoroutine(Wait(1));
+                StartCoroutine(Wait(0.1f));
             }
         }
     }
