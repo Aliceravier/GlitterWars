@@ -810,6 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e0d6211b5de734ca4cff927b865a60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allegiance: 0
   lengthOfMovement: 4
   glitterTile: {fileID: 11400000, guid: 11f961d2b0cacfb41b0807daae921f63, type: 2}
   directionsOfMovement: 00000000000000000000000000000000
