@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: pawtopleft 4
+  m_Name: pawbottomcenter
   m_EditorClassIdentifier: 
-  m_AnimatedSprites: []
+  m_AnimatedSprites:
+  - {fileID: -8050332220561446854, guid: 45853c1a5b0dcc744a77eea4bd75432d, type: 3}
+  - {fileID: -523348791430824668, guid: 35b8aef324e4e5045a648e3f32d47aed, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0

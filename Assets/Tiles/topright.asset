@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: pawtopright
+  m_Name: topright
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 4096047414054976482, guid: 45853c1a5b0dcc744a77eea4bd75432d, type: 3}
-  - {fileID: 38948884624455827, guid: 35b8aef324e4e5045a648e3f32d47aed, type: 3}
+  - {fileID: 3313551447437737237, guid: bb66cd1afb169494480c9043da4b9d9c, type: 3}
+  - {fileID: 4031518520488443800, guid: f522eb66eeca5974582276644fcee3a4, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0

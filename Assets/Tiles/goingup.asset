@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: pawtopright
+  m_Name: goingup
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 4096047414054976482, guid: 45853c1a5b0dcc744a77eea4bd75432d, type: 3}
-  - {fileID: 38948884624455827, guid: 35b8aef324e4e5045a648e3f32d47aed, type: 3}
+  - {fileID: 9073150009961008244, guid: aed661ea9b2ba494a96225527acb5b54, type: 3}
+  - {fileID: 5448791177161684651, guid: 4299fe38ab0056e47bce366f87c6cf27, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0
