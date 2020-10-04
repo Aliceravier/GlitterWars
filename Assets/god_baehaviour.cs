@@ -209,7 +209,7 @@ public class god_baehaviour : MonoBehaviour
             foreach(GameObject unit in units)
             {
                 if(unit.GetComponent<unit_behaviour>().id != unitToCommand.GetComponent<unit_behaviour>().id 
-                    && getCellPosition(unit) == getCellPosition(unitToCommand))
+                    && getCellPosition(unit) == nextCellLocation)
                 {
                     if (i < command.nbOfSteps)
                         command.nbOfSteps = i;
