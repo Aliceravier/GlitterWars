@@ -93,7 +93,7 @@ public class god_baehaviour : MonoBehaviour
         getGameState();
         day += 1;
         //update day in text
-        dayText.GetComponent<Text>().text = "Day " + day;
+        dayText.GetComponent<Text>().text = "" + day;
         //receive commands for turn
         List<Command> listOfCommands = new List<Command>();
         foreach (GameObject unit in units)
