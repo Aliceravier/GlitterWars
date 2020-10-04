@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class god_baehaviour : MonoBehaviour
@@ -10,6 +11,9 @@ public class god_baehaviour : MonoBehaviour
     Vector3[] unitPositions;
     bool turnHasEnded;
     public float speedOfUnits = 10;
+    public GameObject dayText;
+    
+    private int day = 0;
     Dictionary<Command.Direction, Vector2Int> directionToMutatorVector = new Dictionary<Command.Direction, Vector2Int>(){
         {Command.Direction.North, new Vector2Int(0,1)},
         {Command.Direction.NorthEast, new Vector2Int(1,1)},
@@ -29,7 +33,7 @@ public class god_baehaviour : MonoBehaviour
         units = GameObject.FindGameObjectsWithTag("Unit");
         commandsQueue.Enqueue(new List<Command>());
         commandsQueue.Enqueue(new List<Command>());
-        //initialise unit positions
+        //initialise 
         
     }
 
@@ -43,6 +47,9 @@ public class god_baehaviour : MonoBehaviour
     {        
         if (turnHasEnded)
         {
+            day += 1;
+            //update day in text
+            dayText.GetComponent<Text>().text = "Day " + day;
             //receive commands for turn
             List<Command> listOfCommands = new List<Command>();
             foreach(GameObject unit in units)
@@ -78,18 +85,18 @@ public class god_baehaviour : MonoBehaviour
 
     void ExecuteCommand(Command command)
     {
-        Debug.Log("in execute command");
         GameObject unitToCommand = null;
         foreach(GameObject unit in units)
         {
             if (unit.GetComponent<unit_behaviour>().id == command.unitID)
             {
                 unitToCommand = unit;
-                Debug.Log("unit to command is " + unitToCommand);
             }
         }
         // Unit died, sorry
         if (unitToCommand == null) return;
+        //turn unit before moving
+        unitToCommand.GetComponent<unit_behaviour>().turn(command.directionOfMovement);
         //get actual number of steps possible
         getCollisionLocationAndUpdateSteps(command.directionOfMovement, unitToCommand, command);
         //movement
