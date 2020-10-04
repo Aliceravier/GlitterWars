@@ -8,6 +8,7 @@ public class god_baehaviour : MonoBehaviour
 {
     Queue<List<Command>> commandsQueue = new Queue<List<Command>>();
     GameObject[] units;
+    GameObject[] boxes;
     Vector3[] unitPositions;
     bool turnHasEnded;
     public float speedOfUnits = 10;
@@ -33,6 +34,8 @@ public class god_baehaviour : MonoBehaviour
     void Start()
     {
         units = GameObject.FindGameObjectsWithTag("Unit");
+        boxes = GameObject.FindGameObjectsWithTag("Box");
+        Debug.Log("boxes are "+boxes);
         commandsQueue.Enqueue(new List<Command>());
         commandsQueue.Enqueue(new List<Command>());
         commandsQueue.Enqueue(new List<Command>());
@@ -48,6 +51,7 @@ public class god_baehaviour : MonoBehaviour
         units = GameObject.FindGameObjectsWithTag("Unit");
         getGameState();
     }
+
 
     public void getGameState() {
         bool enemyAlive = false;
@@ -172,6 +176,11 @@ public class god_baehaviour : MonoBehaviour
                 if (unit != null && getCellPosition(unit) == hit)
                     target = unit;
             }
+            foreach(GameObject box in boxes)
+            {
+                if (box != null && getCellPosition(box) == hit)
+                    target = box;
+            }
         }
         StartCoroutine(moveRocket(unitToCommand.transform.position, worldlocation, unitToCommand,
             directionToAngle(command.directionOfShot), target));
@@ -216,7 +225,21 @@ public class god_baehaviour : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         anim.SetBool("exploded", true);
-        die(target);
+        if (target.tag == "unit")
+            die(target);
+        else if (target.tag == "Box")
+        {
+            target.GetComponent<box_behaviour>().destroyBox();
+            int i = 0;
+            foreach(GameObject box in boxes)
+            {
+                if(target.GetComponent<box_behaviour>().id == box.GetComponent<box_behaviour>().id)
+                {
+                    boxes[i] = null;
+                }
+                i++;
+            }
+        }
         yield return new WaitForSeconds(1f);
         Destroy(torpedo);
     }
@@ -241,6 +264,19 @@ public class god_baehaviour : MonoBehaviour
                 {
                     if (i < command.nbOfSteps)
                         command.nbOfSteps = i;
+                    Debug.Log("Hit a player");
+                    return nextCellLocation;
+                }
+            }
+
+            foreach (GameObject box in boxes)
+            {
+                Debug.Log("Box is " + box);
+                if (box != null && (getCellPosition(box) == nextCellLocation))
+                {
+                    if (i < command.nbOfSteps)
+                        command.nbOfSteps = i;
+                    Debug.Log("Hit a box");
                     return nextCellLocation;
                 }
             }
