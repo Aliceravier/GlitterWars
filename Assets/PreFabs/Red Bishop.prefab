@@ -836,6 +836,7 @@ MonoBehaviour:
   - {fileID: 1920004856164050092, guid: 2fea761b0f0257a4e8e036fc718c51e9, type: 3}
   - {fileID: -5655677046966989847, guid: 2fea761b0f0257a4e8e036fc718c51e9, type: 3}
   - {fileID: 6135325009749341778, guid: 2fea761b0f0257a4e8e036fc718c51e9, type: 3}
+  torpedo: {fileID: 7322267712184198469, guid: 0a6d1ec6541c8cf40b512014c33fd92f, type: 3}
 --- !u!61 &7736927618851818858
 BoxCollider2D:
   m_ObjectHideFlags: 0

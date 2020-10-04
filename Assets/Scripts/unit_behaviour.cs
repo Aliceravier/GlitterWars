@@ -32,6 +32,8 @@ public class unit_behaviour : MonoBehaviour
 
     private Vector3Int shootloc;
 
+    public GameObject torpedo;
+
     // Start is called before the first frame update
     void Awake()
     {

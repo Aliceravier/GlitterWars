@@ -78,15 +78,21 @@ PrefabInstance:
       propertyPath: diagonal
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3911266976335717542, guid: 7d54d12718eadce4ebcf3c3dd1d77381,
+        type: 3}
+      propertyPath: torpedo
+      value: 
+      objectReference: {fileID: 2727648371665775286, guid: bae7dae235cbf884fa293f43bcfe0d1b,
+        type: 3}
     - target: {fileID: 3911266977005115082, guid: 7d54d12718eadce4ebcf3c3dd1d77381,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 0.64
+      value: 1.032258
       objectReference: {fileID: 0}
     - target: {fileID: 3911266977005115082, guid: 7d54d12718eadce4ebcf3c3dd1d77381,
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.64
+      value: 1.032258
       objectReference: {fileID: 0}
     - target: {fileID: 3991355356901607181, guid: 7d54d12718eadce4ebcf3c3dd1d77381,
         type: 3}
